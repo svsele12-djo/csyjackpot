@@ -1,6 +1,6 @@
 // portfolio.js — 포트폴리오 페이지 로직 (보유내역 localStorage 관리 + 서버 평가)
 
-const STORE_KEY = "pioneer_holdings";
+const STORE_KEY = "csyjackpot_holdings";
 
 function loadHoldings() {
   try {
@@ -131,7 +131,7 @@ async function evaluate() {
   document.getElementById("result").classList.add("hidden");
   setStatus("현재가 평가 중...");
   try {
-    const data = await PioneerAPI.portfolio(holdings);
+    const data = await CsyjackpotAPI.portfolio(holdings);
     renderResult(data);
   } catch (e) {
     setStatus(`평가 실패: ${e.message}`, true);

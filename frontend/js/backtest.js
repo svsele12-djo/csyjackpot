@@ -67,7 +67,7 @@ async function run() {
   setStatus("백테스트 실행 중... (기간/종목 수에 따라 수 초 소요)");
 
   try {
-    const data = await PioneerAPI.backtest(payload);
+    const data = await CsyjackpotAPI.backtest(payload);
     document.getElementById("status").classList.add("hidden");
     renderMetrics(data);
     document.getElementById("result").classList.remove("hidden");

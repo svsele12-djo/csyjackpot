@@ -2,7 +2,7 @@
 # Render 대시보드에서 "New +" → "Blueprint" → 이 저장소 연결 시 자동 적용됨.
 services:
   - type: web
-    name: pioneer
+    name: csyjackpot
     runtime: python
     rootDir: backend
     plan: free

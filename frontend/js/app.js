@@ -108,16 +108,16 @@ async function loadStock(ticker) {
   document.getElementById("result").classList.add("hidden");
 
   try {
-    const info = await PioneerAPI.getStock(ticker);
+    const info = await CsyjackpotAPI.getStock(ticker);
     renderStock(info);
     document.getElementById("status").classList.add("hidden");
     document.getElementById("result").classList.remove("hidden");
 
     // 차트/재무는 병렬 로드 (실패해도 기본정보는 유지)
-    PioneerAPI.getHistory(ticker, "1y")
+    CsyjackpotAPI.getHistory(ticker, "1y")
       .then((h) => renderPriceChart("priceChart", h.prices, info.name))
       .catch((e) => console.warn("history 실패:", e.message));
-    PioneerAPI.getFinancials(ticker)
+    CsyjackpotAPI.getFinancials(ticker)
       .then((f) => renderIncome(f, info.currency))
       .catch((e) => console.warn("financials 실패:", e.message));
     return true;
@@ -177,7 +177,7 @@ function renderSuggestions(results) {
 
 async function runSearch(q) {
   try {
-    const data = await PioneerAPI.searchStock(q, 15);
+    const data = await CsyjackpotAPI.searchStock(q, 15);
     renderSuggestions(data.results || []);
   } catch (e) {
     console.warn("검색 실패:", e.message);
@@ -234,7 +234,7 @@ async function submitSearch() {
   // 이름 검색 → 결과 1개면 바로 조회, 여러 개면 후보 표시
   setStatus(`'${q}' 검색 중...`);
   try {
-    const data = await PioneerAPI.searchStock(q, 15);
+    const data = await CsyjackpotAPI.searchStock(q, 15);
     const results = data.results || [];
     document.getElementById("status").classList.add("hidden");
     if (results.length === 1) {

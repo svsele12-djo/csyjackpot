@@ -85,7 +85,7 @@ async function run() {
   setStatus(`${tickers.length}종목 스크리닝 중... (종목이 많으면 수 초 소요)`);
 
   try {
-    const data = await PioneerAPI.screen(tickers, filters);
+    const data = await CsyjackpotAPI.screen(tickers, filters);
     renderResults(data);
   } catch (e) {
     setStatus(`스크리닝 실패: ${e.message}`, true);

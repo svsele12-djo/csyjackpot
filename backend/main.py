@@ -1,5 +1,5 @@
 """
-main.py — 파이어니어(Pioneer) 퀀트 투자 웹서비스 FastAPI 진입점.
+main.py — csyjackpot 퀀트 투자 웹서비스 FastAPI 진입점.
 
 로컬 실행:
     cd backend
@@ -20,7 +20,7 @@ from routers import stock, screen, backtest, portfolio
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 app = FastAPI(
-    title="Pioneer Quant API",
+    title="csyjackpot Quant API",
     description="퀀트 투자 웹서비스 - 종목 조회 / 스크리닝 / 백테스트 / 포트폴리오",
     version="0.1.0",
 )

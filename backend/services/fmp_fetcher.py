@@ -37,7 +37,7 @@ def _get(path: str, ttl: int = 900) -> Any:
         return hit[1]
     sep = "&" if "?" in path else "?"
     url = f"{_BASE}/{path}{sep}apikey={_API_KEY}"
-    req = urllib.request.Request(url, headers={"User-Agent": "pioneer/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "csyjackpot/1.0"})
     with urllib.request.urlopen(req, timeout=20) as r:
         data = json.loads(r.read().decode())
     # FMP 는 에러도 200 + {"Error Message": ...} 로 줄 수 있음
