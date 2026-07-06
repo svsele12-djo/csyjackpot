@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+yfinance
+finance-datareader
+pandas
+python-dotenv

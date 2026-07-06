@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "frontend",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-3", "-m", "http.server", "5500", "--directory", "C:/Users/miraesoledu01/Documents/개인파일/프로젝트/pioneer/frontend"],
+      "port": 5500
+    }
+  ]
+}

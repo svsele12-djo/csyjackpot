@@ -1,0 +1,16 @@
+# 환경변수 / API 키 (절대 커밋 금지)
+.env
+backend/.env
+*.env
+!*.env.example
+
+# 파이썬
+backend/.venv/
+__pycache__/
+*.pyc
+
+# OS/에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

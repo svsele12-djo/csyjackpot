@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파이어니어 — 종목 조회</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="logo">Pioneer</span>
+    <nav>
+      <a href="index.html" class="active">종목조회</a>
+      <a href="screen.html">스크리닝</a>
+      <a href="backtest.html">백테스트</a>
+      <a href="portfolio.html">포트폴리오</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="search-row">
+      <div class="search-box">
+        <input id="tickerInput" type="text" placeholder="종목명 또는 티커 입력 (예: 한화, 삼성전자, AAPL, 005930.KS)"
+               value="AAPL" autocomplete="off" />
+        <ul id="suggestions" class="suggestions hidden"></ul>
+      </div>
+      <button id="searchBtn">조회</button>
+    </div>
+    <div class="hint">한글 종목명으로 검색하면 후보가 나타납니다. 한국 주식: <code>005930.KS</code>(삼성전자) · 미국 주식: <code>AAPL</code></div>
+
+    <div id="status" class="status">티커를 입력하고 조회하세요.</div>
+
+    <div id="result" class="hidden">
+      <!-- 종목 요약 -->
+      <div class="card">
+        <div class="stock-head">
+          <span class="name" id="stName">—</span>
+          <span class="ticker" id="stTicker"></span>
+          <span class="price" id="stPrice"></span>
+        </div>
+        <div id="stChange" class="change"></div>
+        <div class="tags" id="stTags"></div>
+        <div class="metrics" id="stMetrics"></div>
+      </div>
+
+      <!-- 가격 차트 -->
+      <div class="card">
+        <div class="section-title">가격 추이 (최근 1년)</div>
+        <div class="chart-wrap"><canvas id="priceChart"></canvas></div>
+      </div>
+
+      <!-- 재무제표 -->
+      <div class="card">
+        <div class="section-title">손익계산서 (연간)</div>
+        <div id="incomeTable"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/api.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Render.com Blueprint — 백엔드(FastAPI)가 API + 프론트엔드를 통합 서빙.
+# Render 대시보드에서 "New +" → "Blueprint" → 이 저장소 연결 시 자동 적용됨.
+services:
+  - type: web
+    name: pioneer
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      # 파이썬 버전 고정 (미지정 시 Render 기본값 사용)
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      # FMP API 키는 비밀값 → 대시보드에서 직접 입력 (blueprint 에 값 저장 안 함)
+      - key: FMP_API_KEY
+        sync: false

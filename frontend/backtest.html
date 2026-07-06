@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파이어니어 — 백테스트</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="logo">Pioneer</span>
+    <nav>
+      <a href="index.html">종목조회</a>
+      <a href="screen.html">스크리닝</a>
+      <a href="backtest.html" class="active">백테스트</a>
+      <a href="portfolio.html">포트폴리오</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="section-title">포트폴리오 (동일비중)</div>
+      <textarea id="tickers" rows="2" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:12px;font-size:14px;resize:vertical;"
+        placeholder="티커를 쉼표/공백으로 구분 입력">AAPL, MSFT, NVDA</textarea>
+
+      <div class="metrics" style="margin-top:16px;">
+        <label class="metric"><div class="k">기간</div>
+          <select id="period">
+            <option value="1y">1년</option>
+            <option value="2y">2년</option>
+            <option value="3y" selected>3년</option>
+            <option value="5y">5년</option>
+            <option value="10y">10년</option>
+          </select>
+        </label>
+        <label class="metric"><div class="k">리밸런싱</div>
+          <select id="rebalance">
+            <option value="none">없음(매수후보유)</option>
+            <option value="monthly">매월</option>
+            <option value="quarterly" selected>분기</option>
+            <option value="yearly">매년</option>
+          </select>
+        </label>
+        <label class="metric"><div class="k">초기자본</div>
+          <input id="initial" type="number" step="any" value="10000000" /></label>
+        <label class="metric"><div class="k">거래비용(%)</div>
+          <input id="cost" type="number" step="any" value="0.3" /></label>
+      </div>
+      <button id="runBtn" style="margin-top:16px;padding:12px 22px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;">백테스트 실행</button>
+    </div>
+
+    <div id="status" class="status hidden"></div>
+
+    <div id="result" class="hidden">
+      <div class="card">
+        <div class="section-title" id="rangeTitle"></div>
+        <div class="metrics" id="metrics"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">자산 곡선</div>
+        <div class="chart-wrap"><canvas id="equityChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <script src="js/api.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/backtest.js"></script>
+</body>
+</html>

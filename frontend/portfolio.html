@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파이어니어 — 포트폴리오</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <span class="logo">Pioneer</span>
+    <nav>
+      <a href="index.html">종목조회</a>
+      <a href="screen.html">스크리닝</a>
+      <a href="backtest.html">백테스트</a>
+      <a href="portfolio.html" class="active">포트폴리오</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="section-title">보유종목 추가</div>
+      <div class="search-row">
+        <input id="pTicker" placeholder="티커 (예: AAPL)" style="flex:2" />
+        <input id="pShares" type="number" step="any" placeholder="수량" style="flex:1" />
+        <input id="pAvg" type="number" step="any" placeholder="평균단가" style="flex:1" />
+        <button id="addBtn">추가</button>
+      </div>
+      <div class="hint">보유내역은 이 브라우저(localStorage)에 저장됩니다. 통화가 다른 종목을 섞으면 합계·비중은 통화 구분 없이 단순 합산됩니다.</div>
+      <div id="holdingsList"></div>
+      <button id="evalBtn" style="margin-top:8px;padding:12px 22px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:600;cursor:pointer;">현재가 평가</button>
+    </div>
+
+    <div id="status" class="status hidden"></div>
+
+    <div id="result" class="hidden">
+      <div class="card">
+        <div class="metrics" id="summary"></div>
+      </div>
+      <div class="card">
+        <div class="section-title">종목별 평가</div>
+        <div id="table"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>
