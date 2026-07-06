@@ -56,9 +56,27 @@ py -3 -m http.server 5500
 - 한국: `005930.KS`(삼성전자, 코스피), `068760.KQ`(코스닥)
 - 미국: `AAPL`, `NVDA` 등
 
-## 배포
-- **백엔드(Render.com)**: Start Command `uvicorn main:app --host 0.0.0.0 --port $PORT`. 무료 플랜은 15분 비활성 시 슬립 → 첫 요청 지연.
-- **프론트엔드(GitHub Pages)**: `frontend/` 정적 배포 후, `js/api.js` 의 배포용 `API_BASE`(현재 `YOUR-RENDER-APP.onrender.com` 자리)를 실제 Render 주소로 교체하거나 페이지에서 `window.PIONEER_API_BASE` 설정.
+## 배포 (GitHub + Render 통합)
+
+FastAPI 한 서비스가 API(`/api/*`)와 프론트엔드(정적)를 **함께 서빙**한다. URL 하나 · CORS 불필요 · 배포 한 번.
+
+### 1) GitHub 에 올리기
+```powershell
+# (최초 1회) 저장소는 github.com 에서 먼저 새로 만든다: 예) pioneer  (README/.gitignore 추가 안 함)
+git remote add origin https://github.com/<사용자명>/<저장소명>.git
+git push -u origin main
+```
+이미 `git init` + 최초 커밋은 되어 있음. `.env`(FMP 키)는 `.gitignore` 로 제외되어 올라가지 않는다.
+
+### 2) Render 에 배포 (Blueprint)
+1. https://render.com 가입 → GitHub 연동
+2. **New + → Blueprint** → 이 저장소 선택 → `render.yaml` 자동 인식
+3. 배포 중 **환경변수 `FMP_API_KEY`** 에 FMP 키 입력 (blueprint 에는 값이 없음)
+4. 배포 완료 후 `https://pioneer-xxxx.onrender.com` 접속 → 프론트+API 모두 동작
+
+> - 무료 플랜은 15분 미사용 시 슬립 → 첫 요청 30초~1분 지연.
+> - 코드 push 시 Render 가 자동 재배포.
+> - 프론트를 GitHub Pages 등 **다른 도메인**에 따로 올릴 경우에만, 페이지에서 `window.PIONEER_API_BASE = "https://<render주소>"` 로 백엔드 주소를 지정한다.
 
 ## 알려진 단순화(데모)
 - 스크리닝: 지표값이 없으면(null) 해당 조건은 무시하고 통과 처리 (없는 데이터로 불이익 없음).
